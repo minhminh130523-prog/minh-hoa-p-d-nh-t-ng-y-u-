@@ -46,6 +46,17 @@
         .nav-link { transition: all 0.25s ease; }
         .nav-link:hover { transform: translateY(-2px); }
         input, select, textarea { font-size: 1rem; }
+        .image-preview {
+    width: 100%;
+    max-height: 240px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-top: 10px;
+    display: none;
+}
+.image-preview.show {
+    display: block;
+}
     </style>
 </head>
 <body class="bg-light text-dark leading-relaxed">
@@ -756,7 +767,8 @@ if (!img) {
     img = document.getElementById('productImage').value.trim();
 }
 if (!img) {
-    img = 'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=400&h=400&fit=crop';
+    <input type="file" id="productImageFile" accept="image/*">
+<img id="imagePreview" alt="Xem trước ảnh">
 }
 
             if (!name || !price) {

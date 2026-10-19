@@ -723,6 +723,22 @@ Trân trọng, minhFlower 🌸
             window.location.hash = '#trangchu';
         });
 
+                // Xem trước ảnh khi chọn file
+        const imageFileInput = document.getElementById('productImageFile');
+        const previewImg = document.getElementById('imagePreview');
+        imageFileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    previewImg.classList.add('show');
+                };
+                reader.readAsDataURL(this.files[0]);
+            } else {
+                previewImg.classList.remove('show');
+                previewImg.src = '';
+            }
+        });
         // Thêm sản phẩm - ĐÃ SỬA LỖI
         productForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -730,7 +746,18 @@ Trân trọng, minhFlower 🌸
             const name = document.getElementById('productName').value.trim();
             const price = document.getElementById('productPrice').value;
             const desc = document.getElementById('productDesc').value.trim() || 'Sản phẩm mới từ minhFlower';
-            const img = document.getElementById('productImage').value.trim() || 'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=400&h=400&fit=crop';
+            // Ưu tiên ảnh chọn từ máy trước, sau đó lấy link, cuối cùng dùng ảnh mặc định
+let img = '';
+const fileInput = document.getElementById('productImageFile');
+if (fileInput.files && fileInput.files[0]) {
+    img = URL.createObjectURL(fileInput.files[0]);
+}
+if (!img) {
+    img = document.getElementById('productImage').value.trim();
+}
+if (!img) {
+    img = 'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=400&h=400&fit=crop';
+}
 
             if (!name || !price) {
                 alert('⚠️ Vui lòng điền đầy đủ Tên sản phẩm và Giá bán!');

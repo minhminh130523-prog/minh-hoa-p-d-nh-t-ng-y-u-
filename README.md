@@ -417,7 +417,7 @@
                                 <span class="w-9 h-9 bg-primary/10 rounded-full flex items-center justify-center text-primary">
                                     <i class="fa fa-envelope"></i>
                                 </span>
-                                <span>minhminh1305232@gmail.com</span>
+                                <span>minhminh130523@gmail.com</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <span class="w-9 h-9 bg-accent/10 rounded-full flex items-center justify-center text-accent">

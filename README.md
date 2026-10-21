@@ -489,7 +489,7 @@
                 <div>
                     <h4 class="font-bold text-lg mb-4">Liên hệ</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li>📧 minhminh1305232@gmail.com</li>
+                        <li>📧 minhminh130523@gmail.com</li>
                         <li>📞 0397321270</li>
                         <li>📍 Hưng Yên - Tiên Lữ</li>
                     </ul>

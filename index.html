@@ -46,17 +46,6 @@
         .nav-link { transition: all 0.25s ease; }
         .nav-link:hover { transform: translateY(-2px); }
         input, select, textarea { font-size: 1rem; }
-        .image-preview {
-     width: 100%;
-     max-height: 240px;
-     object-fit: cover;
-     border-radius: 16px;
-     margin-top: 10px;
-     display: none;
-}
-.image-preview.show {
-    display: block;
-}
     </style>
 </head>
 <body class="bg-light text-dark leading-relaxed">
@@ -80,9 +69,9 @@
                 <a href="#giohang" class="nav-link font-medium text-gray-700 hover:text-primary px-1 py-2 relative">
                     <i class="fa fa-shopping-cart mr-1"></i> Giỏ hàng
                     <span id="cartCount" class="absolute -top-1 -right-3 bg-secondary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                </a>
                 <button id="authBtn" class="bg-gradient-brand text-white px-5 py-2.5 rounded-full font-medium hover:opacity-90 transition-opacity shadow-sm">
-    <span id="authText">Đăng nhập</span>
-</button>
+                    <span id="authText">Đăng nhập</span>
                 </button>
             </div>
 
@@ -106,7 +95,7 @@
     </nav>
 
     <!-- ===== ĐĂNG NHẬP QUẢN TRỊ ===== -->
-    <div id="loginModal" class="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center hidden-section">
+    <div id="loginModal" class="fixed inset-0 bg-black/50 z-[100] flex items-center justify-center hidden">
         <div class="bg-white rounded-3xl p-8 w-full max-w-md mx-4 shadow-2xl">
             <div class="text-center mb-6">
                 <div class="w-16 h-16 rounded-full bg-gradient-brand flex items-center justify-center text-white text-2xl mx-auto mb-3">🌸</div>
@@ -428,7 +417,7 @@
                                 <span class="w-9 h-9 bg-primary/10 rounded-full flex items-center justify-center text-primary">
                                     <i class="fa fa-envelope"></i>
                                 </span>
-                                <span>minhminh1305232@gmail.com</span>
+                                <span>minhminh130523@gmail.com</span>
                             </li>
                             <li class="flex items-center gap-3">
                                 <span class="w-9 h-9 bg-accent/10 rounded-full flex items-center justify-center text-accent">
@@ -734,22 +723,6 @@ Trân trọng, minhFlower 🌸
             window.location.hash = '#trangchu';
         });
 
-                // Xem trước ảnh khi chọn file
-        const imageFileInput = document.getElementById('productImageFile');
-        const previewImg = document.getElementById('imagePreview');
-        imageFileInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    previewImg.src = e.target.result;
-                    previewImg.classList.add('show');
-                };
-                reader.readAsDataURL(this.files[0]);
-            } else {
-                previewImg.classList.remove('show');
-                previewImg.src = '';
-            }
-        });
         // Thêm sản phẩm - ĐÃ SỬA LỖI
         productForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -757,19 +730,7 @@ Trân trọng, minhFlower 🌸
             const name = document.getElementById('productName').value.trim();
             const price = document.getElementById('productPrice').value;
             const desc = document.getElementById('productDesc').value.trim() || 'Sản phẩm mới từ minhFlower';
-            // Ưu tiên ảnh chọn từ máy trước, sau đó lấy link, cuối cùng dùng ảnh mặc định
-let img = '';
-const fileInput = document.getElementById('productImageFile');
-if (fileInput.files && fileInput.files[0]) {
-    img = URL.createObjectURL(fileInput.files[0]);
-}
-if (!img) {
-    img = document.getElementById('productImage').value.trim();
-}
-if (!img) {
-    <input type="file" id="productImageFile" accept="image/*">
-<img id="imagePreview" alt="Xem trước ảnh">
-}
+            const img = document.getElementById('productImage').value.trim() || 'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=400&h=400&fit=crop';
 
             if (!name || !price) {
                 alert('⚠️ Vui lòng điền đầy đủ Tên sản phẩm và Giá bán!');
